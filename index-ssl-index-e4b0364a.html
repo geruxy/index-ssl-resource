@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>mk体育 · 再次遇见，持续关注</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f6f8;
+      color: #1e1e2a;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- 深色头图 (hero) ---- */
+    .hero {
+      background: linear-gradient(145deg, #0c141f 0%, #1a2536 100%);
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+      color: #eaeef5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 195, 55, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 span {
+      color: #f7b731;
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      opacity: 0.88;
+      font-weight: 300;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: 0.3rem 1.2rem;
+      background: rgba(247, 183, 49, 0.12);
+      border: 1px solid rgba(247, 183, 49, 0.25);
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #f5d78c;
+    }
+
+    /* ---- 正文区 (浅色) ---- */
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.8rem 1.5rem 3.5rem;
+    }
+
+    /* 卡片模块 */
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #1a1a2c;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 26px;
+      background: #f7b731;
+      border-radius: 8px;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+      color: #2e2e3c;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 强调色链接 */
+    a {
+      color: #c9771e;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+      font-weight: 500;
+    }
+
+    a:hover {
+      color: #9f5d14;
+      border-bottom-color: #c9771e;
+    }
+
+    /* 亮点列表 (灵活) */
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .feature-item {
+      flex: 1 1 180px;
+      background: #f8f9fc;
+      border-radius: 16px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .feature-item:hover {
+      background: #eff1f7;
+      transform: translateY(-2px);
+    }
+
+    .feature-item .emoji-bg {
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-item h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-item p {
+      font-size: 0.9rem;
+      color: #4a4a5a;
+      margin-bottom: 0;
+    }
+
+    /* 使用建议 + 提示混合区 */
+    .advice-box {
+      background: #f2f4f9;
+      border-left: 5px solid #f7b731;
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.8rem 0;
+    }
+
+    .advice-box p {
+      margin-bottom: 0.5rem;
+    }
+
+    .advice-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .advice-box strong {
+      color: #1f2a3a;
+    }
+
+    /* FAQ 摘要 (折叠感) */
+    .faq-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1f2a3a;
+      cursor: default;
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .faq-q::before {
+      content: '▸';
+      color: #f7b731;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .faq-a {
+      margin-left: 1.6rem;
+      color: #3d3d4f;
+      font-size: 0.95rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e0e2e8;
+      margin: 1.8rem 0;
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 2rem 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: #6b6b7a;
+      border-top: 1px solid #e2e4ec;
+      background: #fafbfc;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .content {
+        padding: 1.8rem 1rem 2.5rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      .feature-grid {
+        gap: 0.8rem;
+      }
+      .feature-item {
+        flex: 1 1 120px;
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <section class="hero">
+    <h1>再次来到 <span>mk体育</span></h1>
+    <p>一个值得收藏、时常回访的信息角落。<br>保持关注，温和陪伴。</p>
+    <span class="tagline">· 持续 · 安静 · 可靠 ·</span>
+  </section>
+
+  <!-- 正文浅色区 -->
+  <div class="content">
+
+    <!-- 摘要卡片 -->
+    <div class="card">
+      <h2>关于 mk体育</h2>
+      <p>这里不是喧闹的资讯广场，而是一个内容经过挑选、节奏稳定的体育信息站点。无论是赛事回顾、运动文化还是人物侧记，<a href="https://index-ssl-mksport.com">mk体育</a>始终以平实的视角呈现。适合在某个安静的午后，泡一杯茶，慢慢翻阅。</p>
+      <p>如果你上次到访已是几周之前，不妨再来看一眼——内容悄然更新，但风格始终如一。</p>
+    </div>
+
+    <!-- 亮点区 (卡片) -->
+    <div class="card">
+      <h2>值得留意的几处特点</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="emoji-bg">📋</div>
+          <h3>简洁阅读</h3>
+          <p>无干扰排版，聚焦内容本身。</p>
+        </div>
+        <div class="feature-item">
+          <div class="emoji-bg">🔖</div>
+          <h3>便于收藏</h3>
+          <p>结构稳定，适合加入书签或稍后阅读。</p>
+        </div>
+        <div class="feature-item">
+          <div class="emoji-bg">🔄</div>
+          <h3>适度更新</h3>
+          <p>不追求日更，但每次都有值得看的选材。</p>
+        </div>
+        <div class="feature-item">
+          <div class="emoji-bg">🧭</div>
+          <h3>信源平和</h3>
+          <p>不渲染情绪，不堆砌数据，可安心浏览。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 使用建议 + 收藏提醒 (混合) -->
+    <div class="card">
+      <h2>使用建议 · 从收藏到回访</h2>
+      <div class="advice-box">
+        <p><strong>📌 顺手收藏，留个印象</strong><br>如果你觉得这里的内容风格合拍，不妨把 <a href="https://index-ssl-mksport.com">mk体育</a> 加入浏览器书签或收藏夹。下次想看时，不必重新搜索。</p>
+        <p><strong>⏳ 隔段时间回来看看</strong><br>这里的更新不算频繁，但选材往往有延续性。一个月、两个月再回来，或许会发现新的视角或喜欢的专题。</p>
+        <p><strong>📮 保持关注的方式</strong><br>没有邮件推送，也没有弹窗提醒——最简单的关注就是偶尔想起，然后打开书签。你喜欢这种安静的关系。</p>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要卡片 (温和说明) -->
+    <div class="card">
+      <h2>一些你可能想了解的</h2>
+      <div class="faq-mini">
+        <div class="faq-q">为什么叫 mk体育 ？</div>
+        <div class="faq-a">只是一个标识符号，没有特殊含义。重要的是内容本身是否与你合拍。</div>
+
+        <div class="faq-q">内容多久更新一次？</div>
+        <div class="faq-a">没有固定排期，但每次更新都会用心。可以把它当作一本不定期出版的体育手记。</div>
+
+        <div class="faq-q">页面访问是否安全？</div>
+        <div class="faq-a">站点采用常规加密连接，与大多数正规网站一致。浏览时请保持你的设备和网络环境处于日常防护状态。</div>
+
+        <div class="faq-q">需要注册或登录吗？</div>
+        <div class="faq-a">完全不需要。就像翻看一本杂志，打开就看，看完合上。</div>
+      </div>
+      <hr>
+      <p style="font-size:0.92rem; color:#4d4d60;">如果你还有其他疑问，也可以直接记住地址：<a href="https://index-ssl-mksport.com">mk体育</a> —— 它一直在这里。</p>
+    </div>
+
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    <p>随时回来 · <a href="https://index-ssl-mksport.com" style="font-weight:400;">mk体育</a> · 不打扰的陪伴</p>
+    <p style="margin-top:0.6rem; opacity:0.6;">内容仅供个人参考，请根据自身判断阅读。</p>
+  </div>
+
+</body>
+</html>
